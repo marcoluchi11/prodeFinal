@@ -1,0 +1,53 @@
+$color: #142850;
+$font: "Roboto", serif;
+$borde: 50%;
+$ancho: 100px;
+h1 {
+  font-weight: bold;
+}
+body {
+  color: $color;
+  background: #00909e;
+  font-family: $font;
+  margin: 0;
+  padding: 0;
+}
+#resultados {
+  .bloque {
+    line-height: 45px;
+  }
+}
+.centrar {
+  text-align: center;
+}
+.logo {
+  border-radius: $borde;
+  width: $ancho;
+}
+#logout {
+  text-align: center;
+  display: none;
+}
+#datos {
+  list-style-type: none;
+}
+p {
+  font-weight: bold;
+}
+.bordebajo {
+  padding-bottom: 10px;
+  border-bottom: 3px solid black;
+}
+.col-6 {
+  img {
+    width: 50px;
+  }
+  img:hover {
+    color: black;
+  }
+}
+#lista {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

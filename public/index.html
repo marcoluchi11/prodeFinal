@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
+    <title>Prode</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- ENCABEZADO -->
+      <div class="row mt-3 bordebajo">
+        <div class="col-4">
+          <h1>Prode C.A.D Norte</h1>
+        </div>
+        <div class="col-8 mt-3">
+          <img
+            class="img-fluid logo"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBQyNDnojio86aMZnW6I5CjoHam0Rb66VFlESWx41OQLiNpzeh&usqp=CAU"
+            alt=""
+          />
+        </div>
+        <div class="col-12 mt-3">
+          <img
+            id="image"
+            src="https://www.w3schools.com/howto/img_avatar.png"
+            alt=""
+            class="logo"
+          />
+          <h5 id="nombre">Ingresa para jugar</h5>
+          <button id="login" class="btn btn-primary">
+            Login
+          </button>
+          <button id="logout" class="btn btn-primary">
+            Salir
+          </button>
+          <ul id="lista">
+            
+          </ul>
+        </div>
+      </div>
+      <!-- FIN ENCABEZADO -->
+      <!-- EQUIPOS PARA JUGAR -->
+      <form id="resultados">
+      <div class="row mt-3">
+        <!-- FIN EQUIPOS JUGAR -->
+        <div class="col-12">
+          <!-- OPCIONES  -->
+          
+            <div class="bloque">
+              <p>C.A.D Norte vs Ameghino VM</p>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value="Gana"
+                  name="Partido1"
+                />
+                <label class="form-check-label" for="inlineRadio1">Gana</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value="Pierde"
+                  name="Partido1"
+                />
+                <label class="form-check-label" for="inlineRadio2"
+                  >Pierde</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  value="Empata"
+                  name="Partido1"
+                />
+                <label class="form-check-label" for="inlineRadio3"
+                  >Empata</label
+                >
+              </div>
+            </div>
+
+              <div class="bloque">
+                <p>CART vs Penadoy</p>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Gana"
+                    name="Partido2"
+                  />
+                  <label class="form-check-label" for="inlineRadio1"
+                    >Gana</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Pierde"
+                    name="Partido2"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    >Pierde</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Empata"
+                    name="Partido2"
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    >Empata</label
+                  >
+                </div>
+              </div>
+              <div class="bloque">
+                <p>Equipo 1 vs Equipo 2</p>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Gana"
+                    name="Partido3"
+                  />
+                  <label class="form-check-label" for="inlineRadio1"
+                    >Gana</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Pierde"
+                    name="Partido3"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    >Pierde</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Empata"
+                    name="Partido3"
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    >Empata</label
+                  >
+                </div>
+              </div>
+              <div class="bloque">
+                <p>Equipo 1 vs Equipo 2</p>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Gana"
+                    name="Partido4"
+                  />
+                  <label class="form-check-label" for="inlineRadio1"
+                    >Gana</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Pierde"
+                    name="Partido4"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    >Pierde</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Empata"
+                    name="Partido4"
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    >Empata</label
+                  >
+                </div>
+              </div>
+              <div class="bloque">
+                <p>Equipo 1 vs Equipo 2</p>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Gana"
+                    name="Partido5"
+                  />
+                  <label class="form-check-label" for="inlineRadio1"
+                    >Gana</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Pierde"
+                    name="Partido5"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    >Pierde</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Empata"
+                    name="Partido5"
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    >Empata</label
+                  >
+                </div>
+              </div>
+              <div class="bloque">
+                <p>Equipo 1 vs Equipo 2</p>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Gana"
+                    name="Partido6"
+                  />
+                  <label class="form-check-label" for="inlineRadio1"
+                    >Gana</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Pierde"
+                    name="Partido6"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    >Pierde</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Empata"
+                    name="Partido6"
+                    disabled
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    >Empata</label
+                  >
+                </div>
+              </div>
+              <div class="bloque">
+                <p>Equipo 1 vs Equipo 2</p>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Gana"
+                    name="Partido7"
+                  />
+                  <label class="form-check-label" for="inlineRadio1"
+                    >Gana</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Pierde"
+                    name="Partido7"
+                  />
+                  <label class="form-check-label" for="inlineRadio2"
+                    >Pierde</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="Empata"
+                    name="Partido7"
+                    disabled
+                  />
+                  <label class="form-check-label" for="inlineRadio3"
+                    >Empata</label
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- FIN OPCIONES -->
+        <!-- BOTON ENVIAR RESULTADOS -->
+      </div>
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <button
+            id="enviar"
+            type="submit"
+            form="resultados"
+            class="btn btn-primary btn-block"
+          >
+            Enviar Resultados
+          </button>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- FIN BOTON ENVIAR RESULTADOS -->
+    </div>
+    <script src="index.js"></script>
+
+    <script src="jquery-3.5.0.min.js"></script>
+    <!-- <script src="JS/bootstrap.min.js"></script> -->
+  </body>
+</html>

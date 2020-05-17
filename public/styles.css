@@ -1,0 +1,57 @@
+h1 {
+  font-weight: bold;
+}
+
+body {
+  color: #142850;
+  background: #00909e;
+  font-family: "Roboto", serif;
+  margin: 0;
+  padding: 0;
+}
+
+#resultados .bloque {
+  line-height: 45px;
+}
+
+.centrar {
+  text-align: center;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 100px;
+}
+
+#logout {
+  text-align: center;
+  display: none;
+}
+
+#datos {
+  list-style-type: none;
+}
+
+p {
+  font-weight: bold;
+}
+
+.bordebajo {
+  padding-bottom: 10px;
+  border-bottom: 3px solid black;
+}
+
+.col-6 img {
+  width: 50px;
+}
+
+.col-6 img:hover {
+  color: black;
+}
+
+#lista {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=styles.css.map */
