@@ -42,6 +42,9 @@ formulario.addEventListener("submit", (e) => {
     alert("Error. Ingrese todas las respuestas");
     return;
   }
+  if (recorrerArrVotos()) {
+    return;
+  }
   guardarResultados();
   formulario.reset();
   alert("Tus resultados se han enviado con exito");
@@ -177,3 +180,12 @@ function guardarResultadosDeLaFecha() {
 // VALIDAR ENTRADA DE DATOS POR USUARIO, 1 por usuario
 // ACTUALIZAR PUNTUACION COMPARANDO LOS DATOS DE LA FECHA
 //
+function recorrerArrVotos() {
+  obtenerValores();
+  for (let i = 0; i < resultadosJugadores.length; i++) {
+    if (usuario.user.displayName === resultadosJugadores[i].nombre) {
+      alert("Error, Ud. ya ha votado");
+      return true;
+    }
+  }
+}
