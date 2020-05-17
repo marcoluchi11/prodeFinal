@@ -4,7 +4,7 @@ h1 {
 
 body {
   color: #142850;
-  background: #00909e;
+  background: #dddddd;
   font-family: "Roboto", serif;
   margin: 0;
   padding: 0;
@@ -21,6 +21,7 @@ body {
 .logo {
   border-radius: 50%;
   width: 100px;
+  mix-blend-mode: multiply;
 }
 
 #logout {

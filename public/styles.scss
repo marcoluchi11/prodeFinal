@@ -7,7 +7,7 @@ h1 {
 }
 body {
   color: $color;
-  background: #00909e;
+  background: rgb(221, 221, 221);
   font-family: $font;
   margin: 0;
   padding: 0;
@@ -23,6 +23,7 @@ body {
 .logo {
   border-radius: $borde;
   width: $ancho;
+  mix-blend-mode: multiply;
 }
 #logout {
   text-align: center;
