@@ -28,6 +28,7 @@ let resultadosDeLaFecha = [
   "Pierde",
   "Pierde",
 ];
+let PuntuacionJugadores = new Array();
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
   for (let i = 0; i < inputs.length; i++) {
@@ -36,7 +37,10 @@ formulario.addEventListener("submit", (e) => {
     }
   }
   //Validacion de todas las opciones
-  console.log("el array resultados es de: " + arrayResultados.length);
+  if (jQuery.isEmptyObject(usuario)) {
+    alert("Haga click en login para jugar");
+    return;
+  }
   if (arrayResultados.length < 7) {
     arrayResultados = [];
     alert("Error. Ingrese todas las respuestas");
@@ -45,7 +49,9 @@ formulario.addEventListener("submit", (e) => {
   if (recorrerArrVotos()) {
     return;
   }
+
   guardarResultados();
+
   formulario.reset();
   alert("Tus resultados se han enviado con exito");
 });
@@ -89,6 +95,7 @@ function vestirUsuario() {
   off.style.display = "inline-block";
   name.innerHTML = usuario.user.displayName;
   pic.src = usuario.user.photoURL;
+  obtenerPuntuacionFinal();
   mostrarVotos();
 }
 function desvestirUsuario() {
@@ -109,10 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // SE GUARDAN RESULTADOS
 function guardarResultados() {
+  if (usuario.user.displayName === undefined) {
+    return false;
+  }
+
   const record = {
     nombre: usuario.user.displayName,
     resultados: arrayResultados,
-    puntuacion: 0,
   };
   const db = firebase.database();
   const dbRef = db.ref("Datos");
@@ -130,44 +140,32 @@ function obtenerValores() {
         resultadosJugadores.push({
           nombre: childSnapshot.val().nombre,
           resultados: childSnapshot.val().resultados,
-          puntuacion: 0,
         });
       });
     });
-}
-function obtenerResultadosFecha() {}
-// CALCULA PUNTAJE POR JUGADOR
-function calcularPuntaje() {
-  for (let i = 0; i < resultadosJugadores.length; i++) {
-    let indice = 0;
-    resultadosJugadores[i].resultados.forEach((elem) => {
-      if (elem === resultadosPartidos[indice]) {
-        console.log("es igual tato");
-        resultadosJugadores[i].puntuacion += 10;
-      }
-      indice++;
-    });
-  }
 }
 //SE MUESTRAN VOTOS EN PANTALLA
 function mostrarVotos() {
   const db = firebase.database();
   const dbRef = db.ref("Datos");
   dbRef.on("child_added", (snapshot) => {
-    let holis = snapshot.val().resultados;
-    for (let i = 0; i < holis.length; i++) {
+    let resultado = snapshot.val().resultados;
+    for (let i = 0; i < resultado.length; i++) {
       let item = document.createElement("li");
       item.innerHTML =
-        "Resultado " + (i + 1) + ": " + "<strong>" + holis[i] + "</strong>";
+        "Resultado " + (i + 1) + ": " + "<strong>" + resultado[i] + "</strong>";
       lista.appendChild(item);
     }
     let item2 = document.createElement("li");
+    item2.id = "puntuacion";
+    let puntosUsuario = PuntuacionJugadores.find(buscarIndex);
     item2.innerHTML =
-      "Puntuacion: " + "<strong>" + snapshot.val().puntuacion + "</strong>";
+      "Puntuacion: " + "<strong>" + puntosUsuario.puntuacion + "</strong>";
     lista.appendChild(item2);
   });
 }
 // Se cargan en la DB los resultados de la fecha
+// MEJOR PASAR POR PARAMETRO
 function guardarResultadosDeLaFecha() {
   const record = {
     results: resultadosDeLaFecha,
@@ -176,8 +174,10 @@ function guardarResultadosDeLaFecha() {
   const dbRef = db.ref("ResultadosFecha");
   const newResultado = dbRef.push();
   newResultado.set(record);
+  actualizarPuntuacion();
+  obtenerPuntuacionFinal();
+  mostrarPuntuacionFinal();
 }
-// VALIDAR ENTRADA DE DATOS POR USUARIO, 1 por usuario
 // ACTUALIZAR PUNTUACION COMPARANDO LOS DATOS DE LA FECHA
 //
 function recorrerArrVotos() {
@@ -188,4 +188,54 @@ function recorrerArrVotos() {
       return true;
     }
   }
+}
+function actualizarPuntuacion() {
+  obtenerValores();
+  for (let i = 0; i < resultadosJugadores.length; i++) {
+    let puntos = 0;
+    for (let j = 0; j < resultadosDeLaFecha.length; j++) {
+      if (resultadosJugadores[i].resultados[j] === resultadosDeLaFecha[j]) {
+        puntos += 10;
+      }
+    }
+    const record = {
+      nombre: usuario.user.displayName,
+      puntuacion: puntos,
+    };
+    const db = firebase.database();
+    const dbRef = db.ref("Puntuacion");
+    const newResultado = dbRef.push();
+    newResultado.set(record);
+  }
+}
+function obtenerPuntuacionFinal() {
+  firebase
+    .database()
+    .ref("Puntuacion")
+    .once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        PuntuacionJugadores.push({
+          nombre: childSnapshot.val().nombre,
+          puntuacion: childSnapshot.val().puntuacion,
+        });
+      });
+    });
+}
+function mostrarPuntuacionFinal() {
+  let pts = document.getElementById("puntuacion");
+  for (let i = 0; i < PuntuacionJugadores.length; i++) {
+    console.log("entra aca dps");
+    if (PuntuacionJugadores[i].nombre === usuario.user.displayName) {
+      console.log("entra aca despues de eso");
+      pts.innerHTML =
+        "Puntuacion: " +
+        "<strong>" +
+        PuntuacionJugadores[i].puntuacion +
+        "</strong>";
+    }
+  }
+  console.log("no entra al for");
+}
+function buscarIndex(elem) {
+  return (elem.nombre = usuario.user.displayName);
 }
