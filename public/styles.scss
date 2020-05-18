@@ -25,6 +25,9 @@ body {
   width: $ancho;
   mix-blend-mode: multiply;
 }
+.norte {
+  border-radius: 25% !important;
+}
 #logout {
   text-align: center;
   display: none;
