@@ -31,6 +31,8 @@ body {
 #logout {
   text-align: center;
   display: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #datos {
@@ -58,5 +60,14 @@ p {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+#enviar {
+  margin-bottom: 8px;
+}
+
+.especial {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
+          box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
 }
 /*# sourceMappingURL=styles.css.map */

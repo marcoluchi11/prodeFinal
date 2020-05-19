@@ -31,6 +31,8 @@ body {
 #logout {
   text-align: center;
   display: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #datos {
   list-style-type: none;
@@ -54,4 +56,10 @@ p {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+#enviar {
+  margin-bottom: 8px;
+}
+.especial {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
 }
