@@ -19,6 +19,7 @@ let inputs = document.getElementsByClassName("form-check-input");
 let etiquetas = document.getElementsByClassName("form-check-label");
 let arrayResultados = new Array();
 let resultadosJugadores = new Array();
+let PuntuacionJugadores = new Array();
 let resultadosDeLaFecha = [
   "Pierde",
   "Pierde",
@@ -28,7 +29,7 @@ let resultadosDeLaFecha = [
   "Pierde",
   "Pierde",
 ];
-let PuntuacionJugadores = new Array();
+
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
   for (let i = 0; i < inputs.length; i++) {
@@ -49,7 +50,6 @@ formulario.addEventListener("submit", (e) => {
   if (recorrerArrVotos()) {
     return;
   }
-
   guardarResultados();
 
   formulario.reset();
@@ -159,8 +159,13 @@ function mostrarVotos() {
     let item2 = document.createElement("li");
     item2.id = "puntuacion";
     let puntosUsuario = PuntuacionJugadores.find(buscarIndex);
-    item2.innerHTML =
-      "Puntuacion: " + "<strong>" + puntosUsuario.puntuacion + "</strong>";
+    if (puntosUsuario === undefined) {
+      item2.innerHTML = "Puntuacion: " + "<strong>" + 0 + "</strong>";
+    } else {
+      item2.innerHTML =
+        "Puntuacion: " + "<strong>" + puntosUsuario.puntuacion + "</strong>";
+    }
+
     lista.appendChild(item2);
   });
 }
@@ -189,6 +194,7 @@ function recorrerArrVotos() {
     }
   }
 }
+//SE ACTUALIZA PUNTUACION EN LA DB
 function actualizarPuntuacion() {
   obtenerValores();
   for (let i = 0; i < resultadosJugadores.length; i++) {
@@ -208,6 +214,16 @@ function actualizarPuntuacion() {
     newResultado.set(record);
   }
 }
+function mostrarPuntuacionFinal() {
+  let pts = document.getElementById("puntuacion");
+  console.log("la puntuaciond e los jugadores es:" + PuntuacionJugadores);
+  let puntosJugadorFinal = PuntuacionJugadores.find(buscarIndex);
+  if (puntosJugadorFinal.nombre === usuario.user.displayName) {
+    pts.innerHTML =
+      "Puntuacion: " + "<strong>" + puntosJugadorFinal.puntuacion + "</strong>";
+  }
+}
+//SE OBTIENEN LOS DATOS DE LA DB EN CUANTO A LA PUNTUACION
 function obtenerPuntuacionFinal() {
   firebase
     .database()
@@ -221,21 +237,8 @@ function obtenerPuntuacionFinal() {
       });
     });
 }
-function mostrarPuntuacionFinal() {
-  let pts = document.getElementById("puntuacion");
-  for (let i = 0; i < PuntuacionJugadores.length; i++) {
-    console.log("entra aca dps");
-    if (PuntuacionJugadores[i].nombre === usuario.user.displayName) {
-      console.log("entra aca despues de eso");
-      pts.innerHTML =
-        "Puntuacion: " +
-        "<strong>" +
-        PuntuacionJugadores[i].puntuacion +
-        "</strong>";
-    }
-  }
-  console.log("no entra al for");
-}
+//SE MUESTRA LA PUNTUACION UNA VEZ DADA UNA FECHA CON RESULTADOS FINALES
+
 function buscarIndex(elem) {
   return (elem.nombre = usuario.user.displayName);
 }
