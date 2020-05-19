@@ -4,6 +4,7 @@ $borde: 50%;
 $ancho: 100px;
 h1 {
   font-weight: bold;
+  font-size: 46px;
 }
 body {
   color: $color;
@@ -42,7 +43,6 @@ p {
 }
 .bordebajo {
   padding-bottom: 10px;
-  border-bottom: 3px solid black;
 }
 .col-6 {
   img {
@@ -62,4 +62,16 @@ p {
 }
 .especial {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
+}
+#image {
+  margin-top: 5px;
+  margin-bottom: 12px;
+  margin-right: 2px;
+}
+
+#puntuacion {
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+  padding-bottom: 13px;
+  padding-top: 9px;
 }
