@@ -1,48 +1,20 @@
-$color: #142850;
+$color: #1c1200;
 $font: "Roboto", serif;
 $borde: 50%;
 $ancho: 100px;
-h1 {
-  font-weight: bold;
-  font-size: 46px;
-}
+
 body {
   color: $color;
-  background: rgb(221, 221, 221);
+  background: #544fd2;
   font-family: $font;
   margin: 0;
   padding: 0;
 }
-#resultados {
-  .bloque {
-    line-height: 45px;
-  }
+.bordebajo {
+  padding-bottom: 10px;
 }
 .centrar {
   text-align: center;
-}
-.logo {
-  border-radius: $borde;
-  width: $ancho;
-  mix-blend-mode: multiply;
-}
-.norte {
-  border-radius: 25% !important;
-}
-#logout {
-  text-align: center;
-  display: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-#datos {
-  list-style-type: none;
-}
-p {
-  font-weight: bold;
-}
-.bordebajo {
-  padding-bottom: 10px;
 }
 .col-6 {
   img {
@@ -52,21 +24,57 @@ p {
     color: black;
   }
 }
-#lista {
+#datos {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
 }
+
 #enviar {
   margin-bottom: 8px;
 }
 .especial {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
 }
+h1 {
+  font-weight: bold;
+  font-size: 46px;
+}
 #image {
   margin-top: 5px;
   margin-bottom: 12px;
   margin-right: 2px;
+  background-color: white;
+  z-index: 2;
+}
+#lista {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  border-radius: $borde;
+  width: $ancho;
+  //mix-blend-mode: multiply;
+}
+
+#logout {
+  text-align: center;
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.norte {
+  border-radius: 25% !important;
+}
+#resultados {
+  .bloque {
+    line-height: 45px;
+  }
+}
+
+p {
+  font-weight: bold;
 }
 
 #puntuacion {

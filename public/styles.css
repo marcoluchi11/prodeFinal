@@ -1,51 +1,17 @@
-h1 {
-  font-weight: bold;
-  font-size: 46px;
-}
-
 body {
-  color: #142850;
-  background: #dddddd;
+  color: #1c1200;
+  background: #544fd2;
   font-family: "Roboto", serif;
   margin: 0;
   padding: 0;
 }
 
-#resultados .bloque {
-  line-height: 45px;
+.bordebajo {
+  padding-bottom: 10px;
 }
 
 .centrar {
   text-align: center;
-}
-
-.logo {
-  border-radius: 50%;
-  width: 100px;
-  mix-blend-mode: multiply;
-}
-
-.norte {
-  border-radius: 25% !important;
-}
-
-#logout {
-  text-align: center;
-  display: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#datos {
-  list-style-type: none;
-}
-
-p {
-  font-weight: bold;
-}
-
-.bordebajo {
-  padding-bottom: 10px;
 }
 
 .col-6 img {
@@ -56,10 +22,8 @@ p {
   color: black;
 }
 
-#lista {
+#datos {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
 }
 
 #enviar {
@@ -71,10 +35,47 @@ p {
           box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px 0px;
 }
 
+h1 {
+  font-weight: bold;
+  font-size: 46px;
+}
+
 #image {
   margin-top: 5px;
   margin-bottom: 12px;
   margin-right: 2px;
+  background-color: white;
+  z-index: 2;
+}
+
+#lista {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 100px;
+}
+
+#logout {
+  text-align: center;
+  display: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.norte {
+  border-radius: 25% !important;
+}
+
+#resultados .bloque {
+  line-height: 45px;
+}
+
+p {
+  font-weight: bold;
 }
 
 #puntuacion {
