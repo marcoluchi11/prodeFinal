@@ -48,6 +48,7 @@ formulario.addEventListener("submit", (e) => {
     return;
   }
   if (recorrerArrVotos()) {
+    formulario.reset();
     return;
   }
   guardarResultados();
