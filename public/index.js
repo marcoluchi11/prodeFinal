@@ -208,7 +208,9 @@ function actualizarPuntuacion() {
     const record = {
       nombre: usuario.user.displayName,
       puntuacion: puntos,
+      puntuacionTotal: 0,
     };
+    record.puntuacionTotal += record.puntuacion;
     const db = firebase.database();
     const dbRef = db.ref("Puntuacion");
     const newResultado = dbRef.push();
@@ -234,6 +236,7 @@ function obtenerPuntuacionFinal() {
         PuntuacionJugadores.push({
           nombre: childSnapshot.val().nombre,
           puntuacion: childSnapshot.val().puntuacion,
+          puntuacionTotal: childSnapshot.val().puntuacionTotal,
         });
       });
     });
@@ -246,10 +249,32 @@ function buscarIndex(elem) {
 //  TABLA DE POSICIONES
 let tablaEncabezado = document.getElementById("encabezado");
 let tablaCuerpo = document.getElementById("jugadores");
-function agregarDatosTabla() {
+function agregarFila() {
+  let celda;
   let fila = tablaCuerpo.insertRow(-1);
+  let indice = 0;
   for (let i = 0; i < 6; i++) {
-    let celda = fila.insertCell(i);
-    celda.textContent = "4";
+    // =
+    switch (i) {
+      case 0:
+        celda = fila.insertCell(i);
+        celda.textContent = i + 1;
+        break;
+      case 1:
+        celda = fila.insertCell(i);
+        celda.textContent = PuntuacionJugadores[indice].nombre;
+
+        break;
+      case 2:
+        celda = fila.insertCell(i);
+        celda.textContent = PuntuacionJugadores[indice].puntuacion;
+
+        break;
+      case 3:
+        celda = fila.insertCell(i);
+        celda.textContent = PuntuacionJugadores[indice].puntuacionTotal;
+        indice++;
+        break;
+    }
   }
 }
