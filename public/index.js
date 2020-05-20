@@ -243,22 +243,13 @@ function obtenerPuntuacionFinal() {
 function buscarIndex(elem) {
   return (elem.nombre = usuario.user.displayName);
 }
-
+//  TABLA DE POSICIONES
 let tablaEncabezado = document.getElementById("encabezado");
 let tablaCuerpo = document.getElementById("jugadores");
-let tabla = document.getElementById("tablovich");
 function agregarDatosTabla() {
   let fila = tablaCuerpo.insertRow(-1);
-  let celda1 = fila.insertCell(0);
-  let celda2 = fila.insertCell(1);
-  let celda3 = fila.insertCell(2);
-  let celda4 = fila.insertCell(3);
-  let celda5 = fila.insertCell(4);
-  let celda6 = fila.insertCell(5);
-  celda1.textContent = "4";
-  celda2.textContent = "Vicente Garello";
-  celda3.textContent = "40";
-  celda4.textContent = "70";
-  celda5.textContent = "20";
-  celda6.textContent = "130";
+  for (let i = 0; i < 6; i++) {
+    let celda = fila.insertCell(i);
+    celda.textContent = "4";
+  }
 }
