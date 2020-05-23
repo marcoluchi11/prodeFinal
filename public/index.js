@@ -29,7 +29,6 @@ let resultadosDeLaFecha = [
   "Pierde",
   "Pierde",
 ];
-
 formulario.addEventListener("submit", (e) => {
   e.preventDefault();
   for (let i = 0; i < inputs.length; i++) {
@@ -47,13 +46,15 @@ formulario.addEventListener("submit", (e) => {
     alert("Error. Ingrese todas las respuestas");
     return;
   }
-  if (recorrerArrVotos()) {
-    formulario.reset();
-    return;
-  }
+  // if (recorrerArrVotos()) {
+  //   formulario.reset();
+  //   return;
+  // }
+  agregarJugadores();
   guardarResultados();
 
   formulario.reset();
+  arrayResultados = [];
   alert("Tus resultados se han enviado con exito");
 });
 
@@ -66,55 +67,7 @@ off.addEventListener("click", (e) => {
   e.preventDefault();
   desloguear();
 });
-// LOGUEO GOOGLE
-let usuario = {};
-
-function logearConGoogle() {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-      usuario = result;
-      vestirUsuario();
-      console.log("te logueaste con exito tatito");
-    })
-    .catch((error) => console.log(error, "error tato"));
-}
-function desloguear() {
-  firebase
-    .auth()
-    .signOut()
-    .then((result) => {
-      console.log("Te deslogueaste");
-      desvestirUsuario();
-    })
-    .catch((err) => console.log("hay error tatito"));
-}
-function vestirUsuario() {
-  btn.style.display = "none";
-  off.style.display = "inline-block";
-  name.innerHTML = usuario.user.displayName;
-  pic.src = usuario.user.photoURL;
-  obtenerPuntuacionFinal();
-  mostrarVotos();
-}
-function desvestirUsuario() {
-  btn.style.display = "inline-block";
-  off.style.display = "none";
-  name.innerHTML = "Hola querido";
-  pic.src = "https://www.w3schools.com/howto/img_avatar.png";
-}
-document.addEventListener("DOMContentLoaded", () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      usuario = { user: user };
-      vestirUsuario();
-    }
-  });
-  // FIN LOGUEO GOOGLE
-});
-
+//SAQUE LO DE GOOGLE
 // SE GUARDAN RESULTADOS
 function guardarResultados() {
   if (usuario.user.displayName === undefined) {
@@ -195,7 +148,7 @@ function recorrerArrVotos() {
     }
   }
 }
-//SE ACTUALIZA PUNTUACION EN LA DB
+//SE MANDA PUNTUACION EN LA DB
 function actualizarPuntuacion() {
   obtenerValores();
   for (let i = 0; i < resultadosJugadores.length; i++) {
@@ -208,9 +161,8 @@ function actualizarPuntuacion() {
     const record = {
       nombre: usuario.user.displayName,
       puntuacion: puntos,
-      puntuacionTotal: 0,
     };
-    record.puntuacionTotal += record.puntuacion;
+    nombres.push(record);
     const db = firebase.database();
     const dbRef = db.ref("Puntuacion");
     const newResultado = dbRef.push();
@@ -236,7 +188,6 @@ function obtenerPuntuacionFinal() {
         PuntuacionJugadores.push({
           nombre: childSnapshot.val().nombre,
           puntuacion: childSnapshot.val().puntuacion,
-          puntuacionTotal: childSnapshot.val().puntuacionTotal,
         });
       });
     });
@@ -247,34 +198,75 @@ function buscarIndex(elem) {
   return (elem.nombre = usuario.user.displayName);
 }
 //  TABLA DE POSICIONES
-let tablaEncabezado = document.getElementById("encabezado");
-let tablaCuerpo = document.getElementById("jugadores");
-function agregarFila() {
-  let celda;
-  let fila = tablaCuerpo.insertRow(-1);
-  let indice = 0;
-  for (let i = 0; i < 6; i++) {
-    // =
-    switch (i) {
-      case 0:
-        celda = fila.insertCell(i);
-        celda.textContent = i + 1;
-        break;
-      case 1:
-        celda = fila.insertCell(i);
-        celda.textContent = PuntuacionJugadores[indice].nombre;
+// let tablaEncabezado = document.getElementById("encabezado");
+// let tablaCuerpo = document.getElementById("jugadores");
+// function agregarFila() {
+//   let celda;
+//   let fila = tablaCuerpo.insertRow(-1);
+//   let indice = 0;
+//   let cont = 0;
+//   for (let i = 0; i < 6; i++) {
+//     // =
+//     switch (i) {
+//       case 0:
+//         celda = fila.insertCell(i);
+//         celda.textContent = cont + 1;
+//         cont++;
+//         break;
+//       case 1:
+//         celda = fila.insertCell(i);
+//         celda.textContent = PuntuacionJugadores[indice].nombre;
 
-        break;
-      case 2:
-        celda = fila.insertCell(i);
-        celda.textContent = PuntuacionJugadores[indice].puntuacion;
+//         break;
+//       case 2:
+//         celda = fila.insertCell(i);
+//         celda.textContent = PuntuacionJugadores[indice].puntuacion;
 
-        break;
-      case 3:
-        celda = fila.insertCell(i);
-        celda.textContent = PuntuacionJugadores[indice].puntuacionTotal;
-        indice++;
-        break;
-    }
-  }
-}
+//         break;
+//       case 3:
+//         celda = fila.insertCell(i);
+//         let puntosTotal = 0;
+//         filtrarPuntuacionPorJugador().forEach((elem) => {
+//           puntosTotal += elem.puntuacion;
+//         });
+//         celda.textContent = puntosTotal;
+//         indice++;
+//         break;
+//     }
+//   }
+// }
+
+// function filtrarPuntuacionPorJugador() {
+//   let indice = -1;
+//   const result = PuntuacionJugadores.filter((elem) => {
+//     indice++;
+//     console.log(indice);
+//     if (elem.nombre === nombres[indice].nombre) {
+//       return elem.nombre;
+//     }
+//   });
+//   return result;
+// }
+// //PUNTUACION TOTAL
+// function agregarJugadores() {
+//   const record = {
+//     nombre: usuario.user.displayName,
+//   };
+//   const db = firebase.database();
+//   const dbRef = db.ref("Jugadores");
+//   const newResultado = dbRef.push();
+//   newResultado.set(record);
+// }
+// let nombres = new Array();
+// function traerJugadores() {
+//   firebase
+//     .database()
+//     .ref("Jugadores")
+//     .once("value", function (snapshot) {
+//       snapshot.forEach(function (childSnapshot) {
+//         nombres.push({
+//           nombre: childSnapshot.val().nombre,
+//         });
+//       });
+//     });
+// }
