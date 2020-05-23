@@ -50,9 +50,7 @@ formulario.addEventListener("submit", (e) => {
   //   formulario.reset();
   //   return;
   // }
-  agregarJugadores();
   guardarResultados();
-
   formulario.reset();
   arrayResultados = [];
   alert("Tus resultados se han enviado con exito");
