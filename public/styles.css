@@ -1,6 +1,7 @@
 body {
   color: #1c1200;
-  background: #544fd2;
+  background: #eeaeca;
+  background: radial-gradient(circle, #eeaeca 0%, #94bbe9 100%);
   font-family: "Roboto", serif;
   margin: 0;
   padding: 0;
@@ -87,5 +88,9 @@ p {
 
 #logoPrincipal {
   width: 300px;
+  border-radius: 31px 31px 31px 31px;
+  -moz-border-radius: 31px 31px 31px 31px;
+  -webkit-border-radius: 31px 31px 31px 31px;
+  border: 3px inherit #000000;
 }
 /*# sourceMappingURL=styles.css.map */
