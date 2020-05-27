@@ -46,10 +46,10 @@ formulario.addEventListener("submit", (e) => {
     alert("Error. Ingrese todas las respuestas");
     return;
   }
-  // if (recorrerArrVotos()) {
-  //   formulario.reset();
-  //   return;
-  // }
+  if (recorrerArrVotos()) {
+    formulario.reset();
+    return;
+  }
   guardarResultados();
   formulario.reset();
   arrayResultados = [];
