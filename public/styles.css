@@ -1,7 +1,7 @@
 body {
+  scroll-behavior: smooth;
   color: #1c1200;
-  background: #eeaeca;
-  background: radial-gradient(circle, #eeaeca 0%, #94bbe9 100%);
+  background: #7cb9e8;
   font-family: "Roboto", serif;
   margin: 0;
   padding: 0;
@@ -87,10 +87,7 @@ p {
 }
 
 #logoPrincipal {
+  mix-blend-mode: multiply;
   width: 300px;
-  border-radius: 31px 31px 31px 31px;
-  -moz-border-radius: 31px 31px 31px 31px;
-  -webkit-border-radius: 31px 31px 31px 31px;
-  border: 3px inherit #000000;
 }
 /*# sourceMappingURL=styles.css.map */

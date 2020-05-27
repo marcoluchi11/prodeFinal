@@ -4,13 +4,9 @@ $borde: 50%;
 $ancho: 100px;
 
 body {
+  scroll-behavior: smooth;
   color: $color;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+  background: #7cb9e8;
   font-family: $font;
   margin: 0;
   padding: 0;
@@ -89,9 +85,6 @@ p {
   padding-top: 9px;
 }
 #logoPrincipal {
+  mix-blend-mode: multiply;
   width: 300px;
-  border-radius: 31px 31px 31px 31px;
-  -moz-border-radius: 31px 31px 31px 31px;
-  -webkit-border-radius: 31px 31px 31px 31px;
-  border: 3px inherit #000000;
 }
