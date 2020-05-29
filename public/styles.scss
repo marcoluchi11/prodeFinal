@@ -69,7 +69,7 @@ h1 {
   border-radius: 25% !important;
 }
 #nombre:hover {
-  color: white;
+  font-style: italic;
 }
 #resultados {
   .bloque {
@@ -89,5 +89,5 @@ p {
 }
 #logoPrincipal {
   mix-blend-mode: multiply;
-  width: 400px;
+  width: 500px;
 }
